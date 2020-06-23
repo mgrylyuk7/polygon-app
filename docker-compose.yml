@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: "mongodb"
+    networks:
+      - dwh-app-tier
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017
+  
+  myapp:
+    build: .
+    networks:
+      - dwh-app-tier
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/usr/lib/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+#  
+networks:
+  dwh-app-tier:
+    driver: bridge
