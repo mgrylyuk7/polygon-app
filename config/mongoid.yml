@@ -162,3 +162,11 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      uri: mongodb://heroku_lmw1z5pp:b7vh18rjj18tn0m78icnqsahi3@ds129023.mlab.com:29023/heroku_lmw1z5pp?retryWrites=false
+      options:
+        skip_version_check: true
+        safe: true
