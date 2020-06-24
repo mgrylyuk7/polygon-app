@@ -8,7 +8,6 @@ class PolygonCoordinationsController < ApplicationController
   end
   
   def create
-    binding.pry
     polygon_coordinate = PolygonCoordination.new(area: params[:polygon_coordinate][:area], user: current_user)
     
     if polygon_coordinate.save
